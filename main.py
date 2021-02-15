@@ -4,9 +4,11 @@ import views
 sys.path.append('../')
 from amk_framework.core import Application
 
+
 urlpatterns = {
     '/': views.index,
-    '/about/': views.about
+    '/about/': views.about,
+    '/contact/': views.contact,
 }
 
 
