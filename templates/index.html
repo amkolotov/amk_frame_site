@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block content %}
     <h1>Обучение програмированию</h1>
     <h3>Key: {{ key }}</h3>
+{% endblock %}
 
-</body>
-</html>
