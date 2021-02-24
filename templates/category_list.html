@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Список категорий
+{% endblock %}
+
+{% block content %}
+
+    <h1>Список категорий</h1>
+
+    <ul>
+
+        {% for category in objects_list %}
+        <li>
+            {{ category.name }} <span>Количество курсов: {{ category.course_count() }}</span>
+        </li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
+

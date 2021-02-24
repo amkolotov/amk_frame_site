@@ -1,15 +1,14 @@
 import sys
 
-import views
 sys.path.append('../')
 from amk_framework.core import Application
 
 
-urlpatterns = {
-    '/': views.index,
-    '/about/': views.about,
-    '/contact/': views.contact,
-}
+# urlpatterns = {
+    # '/': views.index,
+    # '/about/': views.about,
+    # '/contact/': views.contact,
+# }
 
 
 def my_controller(request):
@@ -20,7 +19,9 @@ controllers = [
     my_controller
 ]
 
-app = Application(urlpatterns, controllers)
+app = Application(controllers)
+
+import views
 
 # Запуск:
 # gunicorn main:app

@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Главная
+    Главная | список курсов
 {% endblock %}
 
 {% block content %}
-    <h1>Обучение програмированию</h1>
-    <h3>Key: {{ key }}</h3>
+
+    <h1>Список курсов</h1>
+
+    <ul>
+
+        {% for course in objects_list %}
+        <li>
+            {{ course.name }} <span><a href="/copy-course/?name={{ course.name }}">скопировать</a></span>
+        </li>
+        {% endfor %}
+
+    </ul>
+
 {% endblock %}
+
 
