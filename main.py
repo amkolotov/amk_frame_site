@@ -1,7 +1,7 @@
 import sys
 
 sys.path.append('../')
-from amk_framework.core import Application
+from amk_framework.core import Application, LogApplication, FakeApplication
 
 
 # urlpatterns = {
@@ -20,6 +20,8 @@ controllers = [
 ]
 
 app = Application(controllers)
+# app = LogApplication(controllers)
+# app = FakeApplication(controllers)
 
 import views
 
