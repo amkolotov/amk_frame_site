@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Список судентов
+{% endblock %}
+
+{% block content %}
+
+    <h1>Список студентов</h1>
+
+    <ul>
+
+        {% for student in objects_list %}
+
+        <li>
+            <h2>{{ student.name }}</h2>
+            <p>Курсы:
+
+                {% for course in student.courses %}
+                    {{ course.name }},
+                {% endfor %}
+
+            </p>
+
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
+
