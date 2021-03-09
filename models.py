@@ -2,9 +2,11 @@ import sys
 
 import jsonpickle as jsonpickle
 
+
 sys.path.append('../')
 from amk_framework.common.prototypes import PrototypeMixin
 from amk_framework.common.observer import Subject, Observer
+from amk_framework.common.unitofwork import DomainObject
 
 
 class User:
@@ -16,7 +18,7 @@ class Teacher(User):
     pass
 
 
-class Student(User):
+class Student(User, DomainObject):
     def __init__(self, name):
         self.courses = []
         super().__init__(name)

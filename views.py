@@ -1,5 +1,6 @@
 import sys
 
+from mappers import MapperRegistry
 from models import TrainingSite, BaseSerializer
 from main import app
 
@@ -7,9 +8,13 @@ sys.path.append('../')
 from amk_framework.templates import render
 from amk_framework.logging_mod import Logger, debug
 from amk_framework.cbv import ListView, CreateView
+from amk_framework.common.unitofwork import UnitOfWork
 
 site = TrainingSite()
 logger = Logger('main')
+
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
 
 
 class CourseListView(ListView):
@@ -95,8 +100,12 @@ class CategoryCreateView(CreateView):
 
 
 class StudentListView(ListView):
-    queryset = site.students
+    # queryset = site.students
     template_name = 'student_list.html'
+
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('student')
+        return mapper.all()
 
 
 # @app.add_route('/student-list/')
@@ -113,6 +122,8 @@ class StudentCreateView(CreateView):
         name = data['name']
         student = site.create_user('student', name)
         site.students.append(student)
+        student.mark_new()
+        UnitOfWork.get_current().commit()
 
 # @app.add_route('/create-student/')
 # def create_student(request):
